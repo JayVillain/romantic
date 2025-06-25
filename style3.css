@@ -1,0 +1,274 @@
+/*
+    File: style3.css
+    Deskripsi: Gaya khusus untuk halaman "Tawa & Canda" (page-3.html).
+    Menggunakan variabel warna dan font dari style.css untuk konsistensi.
+*/
+
+/* --- Section Utama Halaman 3 --- */
+.laughter-section {
+    padding: 80px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Animasi kemunculan section saat halaman dimuat */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Kelas ini ditambahkan oleh JS saat halaman sudah dimuat penuh */
+body.page-transition-out .laughter-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Judul dan Deskripsi Section --- */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3.8em;
+    color: var(--primary-romantic);
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    text-transform: capitalize;
+}
+
+.section-description {
+    font-family: var(--font-body);
+    font-size: 1.3em;
+    color: var(--text-light);
+    margin-bottom: 60px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- Tawa & Canda Grid --- */
+.laughter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsif */
+    gap: 40px; /* Jarak antar item lebih besar */
+    margin-bottom: 80px;
+    width: 100%;
+}
+
+.laughter-item {
+    background-color: rgba(0,0,0,0.2); /* Latar belakang item gelap transparan */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.laughter-item:hover {
+    transform: translateY(-12px) scale(1.02); /* Naik lebih tinggi dan sedikit membesar */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.laughter-item img {
+    width: 100%;
+    height: 250px; /* Tinggi gambar tetap */
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8) saturate(1.1); /* Sedikit gelap dan jenuh */
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.laughter-item:hover img {
+    filter: brightness(1) saturate(1.2);
+    transform: scale(1.05); /* Sedikit zoom in gambar */
+}
+
+.item-content {
+    padding: 25px;
+    text-align: left;
+    flex-grow: 1; /* Konten mengisi sisa ruang */
+}
+
+.item-content h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--primary-romantic);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.item-content p {
+    font-family: var(--font-body);
+    font-size: 1em;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* --- Quote Section --- */
+.quote-section {
+    background-color: rgba(var(--primary-romantic-rgb), 0.1); /* Latar belakang pink transparan */
+    border-left: 5px solid var(--primary-romantic);
+    padding: 30px 40px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.quote-section p {
+    font-family: var(--font-heading); /* Menggunakan font heading untuk quote */
+    font-size: 1.6em;
+    font-style: italic;
+    color: var(--text-lighter);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* Tambahkan rgb variabel untuk kemudahan rgba */
+:root {
+    --dark-bg: #1A1A2E;
+    --primary-romantic: #E94560;
+    --primary-romantic-rgb: 233, 69, 96; /* Tambahan untuk rgba */
+    --secondary-accent: #537FE7;
+    --text-light: #E0E0E0;
+    --text-lighter: #F5F5F5;
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Quicksand', sans-serif;
+
+    --transition-duration-page: 1s;
+    --transition-duration-element: 0.5s;
+}
+
+/* --- Pagination Buttons (Prev/Next) --- */
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.pagination-buttons .button {
+    flex: 1;
+    margin: 0 15px;
+    text-align: center;
+}
+
+.pagination-buttons .button.prev-button {
+    background: linear-gradient(45deg, var(--secondary-accent) 0%, #6A99D4 100%);
+    box-shadow: 0 8px 25px rgba(83, 127, 231, 0.4);
+}
+.pagination-buttons .button.prev-button:hover {
+    box-shadow: 0 12px 35px rgba(83, 127, 231, 0.6);
+    background: linear-gradient(45deg, #6A99D4 0%, var(--secondary-accent) 100%);
+}
+
+
+/* --- Animasi Kemunculan Setiap Elemen --- */
+/* Menggunakan keyframes yang sama dari style.css, tapi dengan delay unik */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Delay untuk setiap item agar muncul berurutan */
+.fade-in-element.delay-2 { animation-delay: 0.7s; } /* Item 1 */
+.fade-in-element.delay-3 { animation-delay: 0.9s; } /* Item 2 */
+.fade-in-element.delay-4 { animation-delay: 1.1s; } /* Item 3 */
+.fade-in-element.delay-5 { animation-delay: 1.3s; } /* Item 4 */
+.fade-in-element.delay-6 { animation-delay: 1.5s; } /* Quote Section */
+.fade-in-button.delay-7 { animation-delay: 1.8s; } /* Tombol pagination */
+
+/* --- Responsifitas --- */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 3.2em;
+    }
+    .section-description {
+        font-size: 1.2em;
+    }
+    .laughter-grid {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .laughter-section {
+        padding: 60px 15px;
+    }
+    .section-title {
+        font-size: 2.8em;
+    }
+    .section-description {
+        font-size: 1.1em;
+        margin-bottom: 40px;
+    }
+    .laughter-grid {
+        grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+        gap: 20px;
+    }
+    .laughter-item img {
+        height: 200px;
+    }
+    .item-content h2 {
+        font-size: 1.5em;
+    }
+    .item-content p {
+        font-size: 0.9em;
+    }
+    .quote-section {
+        padding: 25px;
+        margin-bottom: 60px;
+    }
+    .quote-section p {
+        font-size: 1.4em;
+    }
+    .pagination-buttons {
+        flex-direction: column;
+    }
+    .pagination-buttons .button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.2em;
+        margin-bottom: 15px;
+    }
+    .section-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+    .laughter-item img {
+        height: 180px;
+    }
+    .item-content {
+        padding: 15px;
+    }
+    .item-content h2 {
+        font-size: 1.3em;
+    }
+    .item-content p {
+        font-size: 0.8em;
+    }
+    .quote-section p {
+        font-size: 1.1em;
+    }
+}
