@@ -1,0 +1,296 @@
+/*
+    File: style4.css
+    Deskripsi: Gaya khusus untuk halaman "Janji & Kekuatan" (page-4.html).
+    Menggunakan variabel warna dan font dari style.css untuk konsistensi.
+*/
+
+/* --- Section Utama Halaman 4 --- */
+.strength-section {
+    padding: 80px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Animasi kemunculan section saat halaman dimuat */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Kelas ini ditambahkan oleh JS saat halaman sudah dimuat penuh */
+body.page-transition-out .strength-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Content Wrapper untuk Layout Flexibel --- */
+.content-wrapper {
+    width: 100%;
+    margin-bottom: 60px; /* Jarak dari pagination buttons */
+}
+
+/* --- Judul dan Deskripsi Section --- */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3.8em;
+    color: var(--primary-romantic);
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    text-transform: capitalize;
+}
+
+.section-description {
+    font-family: var(--font-body);
+    font-size: 1.3em;
+    color: var(--text-light);
+    margin-bottom: 60px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- Strength Grid (Layout 2 Kolom) --- */
+.strength-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dua kolom sama besar */
+    gap: 60px; /* Jarak antar kolom */
+    align-items: center; /* Pusatkan vertikal */
+    padding: 20px;
+}
+
+.image-column {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-column:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.image-column img {
+    width: 100%;
+    height: 450px; /* Tinggi gambar tetap */
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7) saturate(1.1);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.image-column:hover img {
+    filter: brightness(1) saturate(1.2);
+    transform: scale(1.05); /* Sedikit zoom in gambar */
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    color: var(--text-lighter);
+    padding: 20px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    transform: translateY(100%); /* Awalnya tersembunyi */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-column:hover .image-caption {
+    transform: translateY(0); /* Muncul saat hover */
+}
+
+
+.text-column {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Jarak antar blok teks */
+}
+
+.text-block {
+    background-color: rgba(0,0,0,0.2);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+}
+
+.text-block h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--secondary-accent); /* Menggunakan warna aksen biru untuk sub-judul */
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.text-block p {
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.text-block p.signature {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    font-style: italic;
+    text-align: right;
+    margin-top: 20px;
+    color: var(--primary-romantic);
+}
+
+/* --- Pagination Buttons (Prev/Next) --- */
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.pagination-buttons .button {
+    flex: 1;
+    margin: 0 15px;
+    text-align: center;
+}
+
+.pagination-buttons .button.prev-button {
+    background: linear-gradient(45deg, var(--secondary-accent) 0%, #6A99D4 100%);
+    box-shadow: 0 8px 25px rgba(83, 127, 231, 0.4);
+}
+.pagination-buttons .button.prev-button:hover {
+    box-shadow: 0 12px 35px rgba(83, 127, 231, 0.6);
+    background: linear-gradient(45deg, #6A99D4 0%, var(--secondary-accent) 100%);
+}
+
+
+/* --- Animasi Kemunculan Setiap Elemen --- */
+/* Menggunakan keyframes yang sama dari style.css, tapi dengan delay unik */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Delay untuk setiap elemen agar muncul berurutan */
+.fade-in-element.delay-2 { animation-delay: 0.7s; } /* Kolom gambar */
+.fade-in-element.delay-3 { animation-delay: 0.9s; } /* Kolom teks */
+.fade-in-button.delay-4 { animation-delay: 1.2s; } /* Tombol pagination */
+
+
+/* --- Responsifitas --- */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 3.2em;
+    }
+    .section-description {
+        font-size: 1.2em;
+    }
+    .strength-grid {
+        gap: 40px;
+        padding: 10px;
+    }
+    .image-column img {
+        height: 380px;
+    }
+    .text-block h2 {
+        font-size: 1.8em;
+    }
+    .text-block p {
+        font-size: 1em;
+    }
+    .text-block p.signature {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .strength-section {
+        padding: 60px 15px;
+    }
+    .section-title {
+        font-size: 2.8em;
+    }
+    .section-description {
+        font-size: 1.1em;
+        margin-bottom: 40px;
+    }
+    .strength-grid {
+        grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+        gap: 30px;
+    }
+    .image-column img {
+        height: 300px;
+    }
+    .text-column {
+        gap: 20px;
+    }
+    .text-block h2 {
+        font-size: 1.6em;
+    }
+    .text-block p {
+        font-size: 0.9em;
+    }
+    .text-block p.signature {
+        font-size: 1em;
+    }
+    .pagination-buttons {
+        flex-direction: column;
+    }
+    .pagination-buttons .button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.2em;
+        margin-bottom: 15px;
+    }
+    .section-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+    .image-column img {
+        height: 250px;
+    }
+    .text-block {
+        padding: 20px;
+    }
+    .text-block h2 {
+        font-size: 1.4em;
+    }
+    .text-block p {
+        font-size: 0.8em;
+    }
+    .text-block p.signature {
+        font-size: 0.9em;
+    }
+}

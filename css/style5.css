@@ -1,0 +1,365 @@
+/*
+    File: style5.css
+    Deskripsi: Gaya khusus untuk halaman "Masa Depan Kita" (page-5.html).
+    Menggunakan variabel warna dan font dari style.css untuk konsistensi.
+*/
+
+/* --- Section Utama Halaman 5 --- */
+.future-section {
+    padding: 80px 20px;
+    text-align: center;
+    max-width: 1000px; /* Sedikit lebih sempit untuk fokus */
+    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Animasi kemunculan section saat halaman dimuat */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Kelas ini ditambahkan oleh JS saat halaman sudah dimuat penuh */
+body.page-transition-out .future-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Judul dan Deskripsi Section --- */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3.8em;
+    color: var(--primary-romantic);
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    text-transform: capitalize;
+}
+
+.section-description {
+    font-family: var(--font-body);
+    font-size: 1.3em;
+    color: var(--text-light);
+    margin-bottom: 60px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- Future Content Wrapper (Image + Text) --- */
+.future-content-wrapper {
+    display: flex;
+    flex-direction: column; /* Default: vertikal, di desktop jadi horizontal */
+    align-items: center;
+    gap: 50px; /* Jarak antar gambar dan teks */
+    margin-bottom: 80px;
+    width: 100%;
+}
+
+.future-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Lebar maksimum gambar */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Shadow lebih kuat */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    aspect-ratio: 16 / 9; /* Rasio aspek untuk gambar */
+}
+
+.future-image-container:hover {
+    transform: translateY(-15px) scale(1.02); /* Naik lebih tinggi */
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+}
+
+.future-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7) saturate(1.1);
+    transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.future-image-container:hover img {
+    filter: brightness(1) saturate(1.2);
+    transform: scale(1.05); /* Zoom in gambar */
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    color: var(--text-lighter);
+    padding: 20px;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    font-weight: 300;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.future-image-container:hover .image-overlay {
+    transform: translateY(0);
+}
+
+.future-text-block {
+    background-color: rgba(0,0,0,0.2);
+    padding: 40px; /* Padding lebih besar */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    text-align: left;
+    max-width: 700px; /* Sesuaikan lebar teks */
+}
+
+.future-text-block h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5em; /* Ukuran sub-judul lebih besar */
+    color: var(--secondary-accent);
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.future-text-block p {
+    font-family: var(--font-body);
+    font-size: 1.15em; /* Ukuran paragraf lebih besar */
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+p.signature-final {
+    font-family: var(--font-heading);
+    font-size: 1.8em; /* Ukuran tanda tangan lebih besar */
+    font-style: italic;
+    text-align: right;
+    margin-top: 30px;
+    color: var(--primary-romantic);
+}
+
+p.name-signature {
+    font-family: var(--font-heading);
+    font-size: 1.6em; /* Nama sedikit lebih kecil dari signature */
+    text-align: right;
+    color: var(--primary-romantic);
+    margin-top: 5px;
+}
+
+/* --- End Message & Heart Animation --- */
+.end-message {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    background-color: rgba(var(--primary-romantic-rgb), 0.15); /* Latar belakang pink transparan */
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    max-width: 600px;
+    width: 100%;
+}
+
+.end-message p {
+    font-family: var(--font-body);
+    font-size: 1.2em;
+    color: var(--text-lighter);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.heart-animation {
+    font-size: 3em;
+    color: var(--primary-romantic);
+    animation: heartBeat 1.5s infinite alternate ease-in-out; /* Animasi detak jantung */
+    display: inline-block; /* Agar bisa dianimasikan */
+    margin-top: 10px;
+    text-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+
+/* --- Pagination Buttons (Prev/Next) --- */
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.pagination-buttons .button {
+    flex: 1;
+    margin: 0 15px;
+    text-align: center;
+}
+
+.pagination-buttons .button.prev-button {
+    background: linear-gradient(45deg, var(--secondary-accent) 0%, #6A99D4 100%);
+    box-shadow: 0 8px 25px rgba(83, 127, 231, 0.4);
+}
+.pagination-buttons .button.prev-button:hover {
+    box-shadow: 0 12px 35px rgba(83, 127, 231, 0.6);
+    background: linear-gradient(45deg, #6A99D4 0%, var(--secondary-accent) 100%);
+}
+
+
+/* --- Animasi Kemunculan Setiap Elemen --- */
+/* Menggunakan keyframes yang sama dari style.css, tapi dengan delay unik */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Delay untuk setiap elemen agar muncul berurutan */
+.fade-in-element.delay-2 { animation-delay: 0.7s; } /* Image container */
+.fade-in-element.delay-3 { animation-delay: 0.9s; } /* Text block */
+.fade-in-element.delay-4 { animation-delay: 1.2s; } /* End message */
+.fade-in-element.delay-5 { animation-delay: 1.5s; } /* Heart animation (opsional, bisa digabung dengan delay-4) */
+.fade-in-button.delay-6 { animation-delay: 1.8s; } /* Tombol pagination */
+
+/* --- Responsifitas --- */
+@media (min-width: 769px) { /* Untuk desktop dan tablet besar */
+    .future-content-wrapper {
+        flex-direction: row; /* Gambar dan teks berdampingan */
+        justify-content: center;
+        align-items: flex-start; /* Alignment atas */
+    }
+    .future-text-block {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 3.2em;
+    }
+    .section-description {
+        font-size: 1.2em;
+    }
+    .future-image-container {
+        max-width: 450px;
+    }
+    .future-text-block h2 {
+        font-size: 2em;
+    }
+    .future-text-block p {
+        font-size: 1.05em;
+    }
+    p.signature-final {
+        font-size: 1.6em;
+    }
+    p.name-signature {
+        font-size: 1.4em;
+    }
+    .end-message p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .future-section {
+        padding: 60px 15px;
+    }
+    .section-title {
+        font-size: 2.8em;
+    }
+    .section-description {
+        font-size: 1.1em;
+        margin-bottom: 40px;
+    }
+    .future-content-wrapper {
+        gap: 30px;
+        flex-direction: column; /* Kembali ke vertikal di mobile */
+    }
+    .future-image-container {
+        width: 100%;
+        height: 280px; /* Tinggi gambar tetap */
+        max-width: none;
+    }
+    .future-text-block {
+        padding: 30px;
+    }
+    .future-text-block h2 {
+        font-size: 1.8em;
+    }
+    .future-text-block p {
+        font-size: 0.95em;
+    }
+    p.signature-final {
+        font-size: 1.4em;
+    }
+    p.name-signature {
+        font-size: 1.2em;
+    }
+    .end-message {
+        margin-top: 40px;
+        margin-bottom: 60px;
+        padding: 25px;
+    }
+    .end-message p {
+        font-size: 1em;
+    }
+    .heart-animation {
+        font-size: 2.5em;
+    }
+    .pagination-buttons {
+        flex-direction: column;
+    }
+    .pagination-buttons .button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.2em;
+        margin-bottom: 15px;
+    }
+    .section-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+    .future-image-container {
+        height: 220px;
+    }
+    .future-text-block {
+        padding: 20px;
+    }
+    .future-text-block h2 {
+        font-size: 1.5em;
+    }
+    .future-text-block p {
+        font-size: 0.85em;
+    }
+    p.signature-final {
+        font-size: 1.2em;
+    }
+    p.name-signature {
+        font-size: 1em;
+    }
+    .end-message p {
+        font-size: 0.9em;
+    }
+    .heart-animation {
+        font-size: 2em;
+    }
+}
