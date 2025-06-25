@@ -1,0 +1,237 @@
+/*
+    File: page-2.css
+    Deskripsi: Gaya khusus untuk halaman "Momen Indah" (page-2.html).
+    Menggunakan variabel warna dan font dari style.css untuk konsistensi.
+*/
+
+/* --- Section Utama Halaman 2 --- */
+.moments-section {
+    padding: 80px 20px; /* Padding atas-bawah dan samping */
+    text-align: center;
+    max-width: 1200px; /* Lebar maksimum konten */
+    margin: 0 auto; /* Tengah secara horizontal */
+    min-height: calc(100vh - 80px); /* Memastikan section minimal setinggi viewport minus header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Animasi kemunculan section saat halaman dimuat */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Sama dengan transisi body */
+}
+
+/* Kelas ini ditambahkan oleh JS saat halaman sudah dimuat penuh */
+body.page-transition-out .moments-section {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Judul dan Deskripsi Section --- */
+.section-title {
+    font-family: var(--font-heading); /* Menggunakan font judul dari style.css */
+    font-size: 3.8em;
+    color: var(--primary-romantic); /* Warna romantis dari style.css */
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.3); /* Sedikit shadow untuk efek romantis */
+    text-transform: capitalize; /* Kapitalisasi setiap kata */
+}
+
+.section-description {
+    font-family: var(--font-body); /* Menggunakan font body dari style.css */
+    font-size: 1.3em;
+    color: var(--text-light); /* Warna teks terang dari style.css */
+    margin-bottom: 60px;
+    max-width: 700px; /* Lebar maksimum deskripsi */
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* --- Galeri Foto Grid --- */
+.gallery-grid {
+    display: grid;
+    /* Membuat grid responsif: otomatis menyesuaikan kolom */
+    /* minmax(280px, 1fr) berarti setiap kolom minimal 280px, lalu sisanya dibagi rata */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Jarak antar item galeri */
+    margin-bottom: 80px;
+    width: 100%; /* Memastikan grid mengisi lebar penuh */
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden; /* Penting untuk efek zoom gambar di dalamnya */
+    border-radius: 15px; /* Sudut membulat yang lembut */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Bayangan dalam */
+    cursor: pointer; /* Menandakan elemen bisa diklik */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transisi untuk hover */
+    aspect-ratio: 1 / 1; /* Memastikan setiap item galeri berbentuk persegi */
+    background-color: rgba(0,0,0,0.2); /* Fallback background */
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.03); /* Sedikit naik dan membesar saat hover */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6); /* Bayangan lebih kuat saat hover */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+    filter: brightness(0.7) saturate(1.1); /* Sedikit gelap dan jenuh awal */
+    transition: filter 0.4s ease, transform 0.6s ease; /* Transisi halus untuk gambar */
+}
+
+.gallery-item:hover img {
+    filter: brightness(1) saturate(1.2); /* Lebih cerah dan jenuh saat hover */
+    transform: scale(1.1); /* Zoom in gambar saat hover */
+}
+
+/* --- Overlay Teks di Gambar --- */
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gradien dari transparan ke gelap di bagian bawah */
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    color: var(--text-lighter); /* Warna teks sangat terang */
+    padding: 25px 20px;
+    transform: translateY(100%); /* Awalnya tersembunyi di luar kotak */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transisi halus saat muncul */
+    text-align: left;
+    pointer-events: none; /* Agar tidak menghalangi event hover pada item */
+}
+
+.gallery-item:hover .item-overlay {
+    transform: translateY(0); /* Muncul penuh saat hover */
+}
+
+.item-overlay h2 {
+    font-family: var(--font-heading);
+    font-size: 1.6em;
+    margin-bottom: 8px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.item-overlay p {
+    font-family: var(--font-body);
+    font-size: 0.95em;
+    line-height: 1.5;
+    font-weight: 300;
+    opacity: 0.9; /* Sedikit transparan untuk kesan lembut */
+}
+
+/* --- Tombol Navigasi (Previous/Next Page) --- */
+.pagination-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Lebar maksimum tombol */
+    margin: 0 auto;
+    padding-top: 40px; /* Padding dari galeri */
+}
+
+.pagination-buttons .button {
+    flex: 1; /* Agar tombol mengisi ruang yang tersedia */
+    margin: 0 15px; /* Jarak antar tombol */
+    text-align: center;
+}
+
+/* Warna khusus untuk tombol 'Previous' */
+.pagination-buttons .button.prev-button {
+    background: linear-gradient(45deg, var(--secondary-accent) 0%, #6A99D4 100%); /* Gradien biru */
+    box-shadow: 0 8px 25px rgba(83, 127, 231, 0.4);
+}
+.pagination-buttons .button.prev-button:hover {
+    box-shadow: 0 12px 35px rgba(83, 127, 231, 0.6);
+    background: linear-gradient(45deg, #6A99D4 0%, var(--secondary-accent) 100%);
+}
+
+/* --- Animasi Kemunculan Setiap Elemen --- */
+/* Menggunakan keyframes yang sama dari style.css, tapi dengan delay unik */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.8s forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+/* Delay untuk setiap item galeri agar muncul berurutan */
+/* Mengacu pada delay di index.html, dimulai dari 0.7s setelah halaman dimuat */
+.fade-in-element.delay-2 { animation-delay: 0.7s; } /* Item 1 */
+.fade-in-element.delay-3 { animation-delay: 0.9s; } /* Item 2 */
+.fade-in-element.delay-4 { animation-delay: 1.1s; } /* Item 3 */
+.fade-in-element.delay-5 { animation-delay: 1.3s; } /* Item 4 */
+.fade-in-element.delay-6 { animation-delay: 1.5s; } /* Item 5 */
+.fade-in-button.delay-7 { animation-delay: 1.8s; } /* Tombol pagination */
+
+/* --- Responsifitas (Disempurnakan) --- */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 3.2em;
+    }
+    .section-description {
+        font-size: 1.2em;
+    }
+    .gallery-grid {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .moments-section {
+        padding: 60px 15px;
+    }
+    .section-title {
+        font-size: 2.8em;
+    }
+    .section-description {
+        font-size: 1.1em;
+        margin-bottom: 40px;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+        gap: 20px;
+    }
+    .item-overlay h2 {
+        font-size: 1.3em;
+    }
+    .item-overlay p {
+        font-size: 0.85em;
+    }
+    .pagination-buttons {
+        flex-direction: column; /* Tombol ke bawah di mobile */
+    }
+    .pagination-buttons .button {
+        width: 100%; /* Tombol penuh lebar */
+        margin: 10px 0; /* Jarak antar tombol */
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2.2em;
+        margin-bottom: 15px;
+    }
+    .section-description {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+    .item-overlay {
+        padding: 15px;
+    }
+    .item-overlay h2 {
+        font-size: 1.1em;
+    }
+    .item-overlay p {
+        font-size: 0.8em;
+    }
+}
