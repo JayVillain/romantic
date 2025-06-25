@@ -1,16 +1,20 @@
 /* Import Google Fonts (pastikan di-import di HTML juga) */
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Quicksand:wght@300;400;500;700&display=swap'); */
 
-/* Variabel CSS untuk konsistensi */
+/* Variabel CSS untuk konsistensi warna dan font */
 :root {
-    --primary-color: #FF69B4; /* Deep Pink - Romantis */
-    --secondary-color: #F8F8F8; /* Light Grey - Latar belakang */
-    --accent-color: #FFC0CB; /* Light Pink - Aksen */
-    --text-dark: #333;
-    --text-light: #fff;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Montserrat', sans-serif;
-    --transition-duration: 0.8s; /* Durasi transisi halaman */
+    --dark-bg: #1A1A2E; /* Latar belakang gelap yang kaya */
+    --primary-romantic: #E94560; /* Merah muda keunguan yang romantis */
+    --secondary-accent: #537FE7; /* Biru muda keunguan sebagai aksen */
+    --text-light: #E0E0E0; /* Teks terang untuk kontras */
+    --text-lighter: #F5F5F5; /* Teks sangat terang */
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Quicksand', sans-serif;
+
+    --transition-duration-page: 1s; /* Durasi transisi halaman lebih panjang untuk kesan smooth */
+    --transition-duration-element: 0.5s; /* Durasi transisi elemen */
 }
 
 /* Reset CSS dasar */
@@ -20,24 +24,32 @@
     padding: 0;
 }
 
-body {
-    font-family: var(--font-body);
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
-    background-color: var(--secondary-color);
-    transition: opacity var(--transition-duration) ease-in-out, transform var(--transition-duration) ease-in-out;
+html {
+    scroll-behavior: smooth; /* Gulir halus untuk anchor link */
 }
 
-/* === Transisi Halaman === */
+body {
+    font-family: var(--font-body);
+    color: var(--text-light);
+    line-height: 1.7;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    background-color: var(--dark-bg);
+    /* Transisi opacity dan transform di body untuk transisi halaman */
+    transition: opacity var(--transition-duration-page) ease-in-out, transform var(--transition-duration-page) ease-in-out;
+}
+
+/* === Transisi Halaman yang Sangat Halus === */
+/* State awal saat akan meninggalkan halaman */
 body.page-transition-in {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px); /* Bergerak sedikit ke bawah */
 }
+/* State saat halaman sudah dimuat dan siap tampil */
 body.page-transition-out {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 /* === Header dan Navigasi === */
 header {
@@ -45,114 +57,136 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.9); /* Sedikit transparan */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    backdrop-filter: blur(8px); /* Efek blur modern */
+    background-color: rgba(26, 26, 46, 0.9); /* Latar gelap transparan */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Shadow yang lebih dalam */
+    backdrop-filter: blur(10px); /* Efek blur yang lebih kuat */
+    border-bottom: 1px solid var(--border-color); /* Garis bawah halus */
 }
 
 nav {
     display: flex;
     justify-content: center;
-    padding: 15px 20px;
+    padding: 18px 20px;
 }
 
 .nav-link {
-    color: var(--primary-color);
+    color: var(--text-light);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.05em;
-    padding: 8px 15px;
-    margin: 0 10px;
+    padding: 10px 18px;
+    margin: 0 12px;
     position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: color 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+    border-radius: 8px; /* Sudut sedikit membulat */
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 3px;
-    background-color: var(--primary-color);
+    height: 2px; /* Garis bawah lebih tipis */
+    background-color: var(--primary-romantic);
     left: 50%;
-    bottom: -5px;
+    bottom: -3px;
     transform: translateX(-50%);
     transition: width 0.3s ease-out;
 }
 
 .nav-link:hover {
-    color: var(--text-dark);
-    transform: translateY(-2px); /* Efek hover naik sedikit */
+    color: var(--primary-romantic); /* Warna romantis saat hover */
+    transform: translateY(-3px); /* Efek hover naik sedikit */
+    background-color: rgba(233, 69, 96, 0.1); /* Latar belakang transparan saat hover */
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: calc(100% - 20px); /* Garis bawah yang lebih lebar */
+    width: 100%; /* Garis bawah penuh saat hover/aktif */
 }
 
 .nav-link.active {
-    color: var(--text-dark);
+    color: var(--primary-romantic); /* Warna romantis saat aktif */
+    font-weight: 700;
 }
 
 /* === Tombol Umum === */
 .button {
     display: inline-block;
-    padding: 15px 35px;
-    background-color: var(--primary-color);
-    color: var(--text-light);
+    padding: 16px 40px;
+    background: linear-gradient(45deg, var(--primary-romantic) 0%, #F15967 100%); /* Gradien romantis */
+    color: var(--text-lighter);
     text-decoration: none;
-    border-radius: 50px; /* Bentuk pil */
+    border-radius: 50px;
     font-weight: 700;
-    font-size: 1.1em;
-    letter-spacing: 0.5px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 1.15em;
+    letter-spacing: 1px;
+    transition: all 0.3s ease; /* Transisi untuk semua properti */
     border: none;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3); /* Shadow untuk kesan 3D */
+    box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4); /* Shadow yang lebih kuat */
+    position: relative;
+    overflow: hidden;
+}
+
+.button::before { /* Efek kilau saat hover */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
 }
 
 .button:hover {
-    background-color: #E65A9F; /* Sedikit lebih gelap */
-    transform: translateY(-5px); /* Efek naik lebih tinggi */
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+    transform: translateY(-8px) scale(1.02); /* Efek naik dan sedikit membesar */
+    box-shadow: 0 12px 35px rgba(233, 69, 96, 0.6);
 }
 
-/* === Animasi Umum Fade-In (untuk teks dan tombol) === */
+.button:hover::before {
+    left: 100%;
+}
+
+/* === Animasi Umum Fade-In untuk Elemen === */
 .fade-in-text {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInSlideUp 1s forwards;
-    animation-timing-function: ease-out;
+    transform: translateY(30px); /* Bergerak dari bawah lebih jauh */
+    animation: fadeInSlideUp var(--transition-duration-element) forwards;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out halus */
 }
 
-.fade-in-text.delay-1 { animation-delay: 0.5s; }
-/* .fade-in-text.delay-2 { animation-delay: 1s; } // Dihapus karena tombol punya animasi sendiri */
+.fade-in-text.delay-1 { animation-delay: 0.8s; } /* Delay lebih lama */
 
 .fade-in-button {
     opacity: 0;
-    transform: scale(0.8);
-    animation: fadeInScale 1s forwards;
-    animation-delay: 1.5s; /* Delay setelah teks muncul */
-    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efek "pop" */
+    transform: scale(0.7); /* Lebih kecil di awal */
+    animation: fadeInScaleBounce var(--transition-duration-element) forwards;
+    animation-delay: 1.6s; /* Delay setelah teks muncul */
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efek "pop" yang lebih dramatis */
 }
 
 @keyframes fadeInSlideUp {
     to { opacity: 1; transform: translateY(0); }
 }
-@keyframes fadeInScale {
-    to { opacity: 1; transform: scale(1); }
+@keyframes fadeInScaleBounce {
+    0% { opacity: 0; transform: scale(0.7); }
+    80% { opacity: 1; transform: scale(1.05); } /* Sedikit overshoot */
+    100% { opacity: 1; transform: scale(1); }
 }
 
 
 /* === Bagian Hero Section (Khusus index.html) === */
 .hero-section {
     position: relative;
-    height: calc(100vh - 70px); /* Kurangi tinggi header agar tidak tumpang tindih */
+    height: calc(100vh - 80px); /* Sesuaikan dengan tinggi header baru */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     text-align: center;
-    padding: 20px;
+    padding: 30px; /* Padding lebih banyak */
 }
 
 .hero-image-container {
@@ -162,59 +196,88 @@ nav {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    /* Efek vignette gelap di pinggir gambar */
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.6); /* Lebih gelap agar teks lebih kontras */
-    transform: scale(1.05); /* Sedikit zoom awal */
-    animation: heroZoomPan 15s infinite alternate ease-in-out; /* Animasi zoom & pan yang halus */
+    filter: brightness(0.5) saturate(1.1); /* Lebih gelap dan sedikit lebih jenuh */
+    transform: scale(1.08); /* Zoom awal lebih banyak */
+    /* Animasi zoom & pan yang sangat halus dan lambat */
+    animation: heroZoomPanInfinite 25s infinite alternate ease-in-out;
 }
 
-@keyframes heroZoomPan {
-    0% { transform: scale(1.05) translateX(0); }
-    50% { transform: scale(1.1) translateX(5%); }
-    100% { transform: scale(1.05) translateX(0); }
+@keyframes heroZoomPanInfinite {
+    0% { transform: scale(1.08) translateX(0); }
+    25% { transform: scale(1.12) translateX(3%); }
+    50% { transform: scale(1.15) translateX(-3%); }
+    75% { transform: scale(1.12) translateX(3%); }
+    100% { transform: scale(1.08) translateX(0); }
 }
 
 .hero-text-overlay {
     position: relative;
     z-index: 10;
-    color: var(--text-light);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Shadow lebih kuat */
+    color: var(--text-lighter);
+    text-shadow: 0 0 15px rgba(0,0,0,0.8); /* Shadow yang lebih lembut dan menyebar */
     max-width: 900px;
+    /* Animasi teks muncul dari bawah */
+    opacity: 0;
+    transform: translateY(50px);
+    animation: heroTextReveal 1.5s forwards ease-out;
+    animation-delay: 0.5s;
+}
+
+@keyframes heroTextReveal {
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-text-overlay h1 {
     font-family: var(--font-heading);
-    font-size: 4em; /* Ukuran font lebih besar */
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    font-size: 5em; /* Ukuran font judul lebih besar */
+    margin-bottom: 25px;
+    letter-spacing: 3px; /* Jarak huruf lebih lebar */
+    line-height: 1.1;
+    font-weight: 300; /* Lebih ringan */
 }
 
 .hero-text-overlay p {
     font-family: var(--font-body);
-    font-size: 1.4em;
-    line-height: 1.7;
-    margin-bottom: 40px;
-    font-weight: 300; /* Lebih ringan */
+    font-size: 1.5em; /* Ukuran paragraf lebih besar */
+    line-height: 1.8;
+    margin-bottom: 50px;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s forwards ease-out;
+    animation-delay: 1.3s;
 }
 
-/* === Responsifitas === */
+/* === Responsifitas yang Ditingkatkan === */
+@media (max-width: 1024px) {
+    .hero-text-overlay h1 {
+        font-size: 4em;
+    }
+    .hero-text-overlay p {
+        font-size: 1.3em;
+    }
+}
+
 @media (max-width: 768px) {
     nav {
-        flex-wrap: wrap; /* Navigasi bisa ke bawah */
+        flex-wrap: wrap;
         padding: 10px 5px;
     }
     .nav-link {
         margin: 5px 8px;
         font-size: 0.9em;
+        padding: 6px 12px;
     }
-
     .hero-text-overlay h1 {
-        font-size: 2.8em;
+        font-size: 3em;
     }
     .hero-text-overlay p {
         font-size: 1.1em;
@@ -223,17 +286,27 @@ nav {
         padding: 12px 25px;
         font-size: 1em;
     }
+    .hero-section {
+        height: 100vh; /* Full height di mobile agar lebih fokus */
+    }
 }
 
 @media (max-width: 480px) {
     .hero-text-overlay h1 {
-        font-size: 2em;
+        font-size: 2.2em;
+        margin-bottom: 15px;
     }
     .hero-text-overlay p {
         font-size: 0.9em;
+        margin-bottom: 30px;
     }
     .nav-link {
-        font-size: 0.8em;
+        font-size: 0.75em;
         margin: 3px 5px;
+        padding: 5px 8px;
+    }
+    .button {
+        font-size: 0.9em;
+        padding: 10px 20px;
     }
 }
